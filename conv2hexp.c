@@ -1,42 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv2int.c                                         :+:      :+:    :+:   */
+/*   conv2hexp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fio <fio@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 17:17:54 by fio               #+#    #+#             */
-/*   Updated: 2025/03/27 02:45:30 by fio              ###   ########.fr       */
+/*   Created: 2025/03/27 00:58:02 by fio               #+#    #+#             */
+/*   Updated: 2025/03/27 02:44:48 by fio              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-static void	ft_int2char(int i)
+void	conv2hexp(unsigned long n, char *base)
 {
-	char	c;
-
-	c = (i + 48);
-	write (1, &c, 1);
-}
-
-void	conv2int(int n)
-{
-	if (n == -2147483648)
-	{
-		write (1, "-2147483648", 11);
-		return ;
-	}
-	if (n < 0)
-	{
-		write (1, "-", 1);
-		n = -n;
-	}
-	if (n > 9)
-	{
-		conv2int(n / 10);
-		ft_int2char(n % 10);
-	}
-	else
-		ft_int2char(n);
+	if (n >= 16)
+		conv2hexp(n / 16, base);
+	ft_putchar(base[n % 16]);
 }

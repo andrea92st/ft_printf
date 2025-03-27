@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv2int.c                                         :+:      :+:    :+:   */
+/*   conv2u.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fio <fio@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 17:17:54 by fio               #+#    #+#             */
-/*   Updated: 2025/03/27 02:45:30 by fio              ###   ########.fr       */
+/*   Created: 2025/03/27 02:49:45 by fio               #+#    #+#             */
+/*   Updated: 2025/03/27 02:50:41 by fio              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-static void	ft_int2char(int i)
+static void	ft_u2char(unsigned int i)
 {
 	char	c;
 
@@ -20,23 +20,13 @@ static void	ft_int2char(int i)
 	write (1, &c, 1);
 }
 
-void	conv2int(int n)
+void	conv2u(unsigned int n)
 {
-	if (n == -2147483648)
-	{
-		write (1, "-2147483648", 11);
-		return ;
-	}
-	if (n < 0)
-	{
-		write (1, "-", 1);
-		n = -n;
-	}
 	if (n > 9)
 	{
-		conv2int(n / 10);
-		ft_int2char(n % 10);
+		conv2u(n / 10);
+		ft_u2char(n % 10);
 	}
 	else
-		ft_int2char(n);
+		ft_u2char(n);
 }

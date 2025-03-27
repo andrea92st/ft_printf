@@ -6,19 +6,20 @@
 /*   By: fio <fio@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 17:53:59 by fio               #+#    #+#             */
-/*   Updated: 2025/03/26 18:14:16 by fio              ###   ########.fr       */
+/*   Updated: 2025/03/27 02:46:34 by fio              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void conv2str(char *str)
+void	conv2str(char *str)
 {
-    int i;
-    i = 0;
-    while (str[i])
-    {
-        write(1, &str[i], 1);
-        i++;
-    }
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
 }
