@@ -6,11 +6,11 @@
 /*   By: fio <fio@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 17:17:54 by fio               #+#    #+#             */
-/*   Updated: 2025/03/31 11:28:33 by fio              ###   ########.fr       */
+/*   Updated: 2025/03/31 12:03:15 by fio              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 static void	ft_int2char(int i)
 {

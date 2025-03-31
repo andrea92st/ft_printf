@@ -6,11 +6,11 @@
 /*   By: fio <fio@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 02:49:45 by fio               #+#    #+#             */
-/*   Updated: 2025/03/31 11:25:00 by fio              ###   ########.fr       */
+/*   Updated: 2025/03/31 12:03:37 by fio              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 static void	ft_u2char(unsigned int i)
 {

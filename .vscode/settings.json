@@ -4,6 +4,7 @@
     "editor.insertSpaces": false,
 	"editor.detectIndentation": false,
 	"files.associations": {
-		"printf.h": "c"
+		"printf.h": "c",
+		"ft_printf.h": "c"
 	}
 }
