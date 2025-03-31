@@ -6,72 +6,81 @@
 /*   By: fio <fio@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:56:33 by fio               #+#    #+#             */
-/*   Updated: 2025/03/27 02:43:48 by fio              ###   ########.fr       */
+/*   Updated: 2025/03/31 11:32:11 by fio              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	convertor(va_list args, const char format)
+static int	convertor2(va_list args, const char format)
 {
 	void	*ptr;
+	int		len;
 
-	if (format == 'd' || format == 'i')
-		conv2int(va_arg(args, int));
-	if (format == 's')
-		conv2str(va_arg(args, char *));
-	if (format == 'c')
-		ft_putchar(va_arg(args, int));
-	if (format == '%')
-		ft_putchar('%');
+	ptr = va_arg (args, void *);
+	len = 0;
 	if (format == 'p')
 	{
-		ptr = va_arg(args, void *);
 		write(1, "0x", 2);
-		conv2hexp((unsigned long)ptr, "0123456789abcdef");
+		len = len + 2;
+		len += conv2hexp((unsigned long)ptr, "0123456789abcdef");
 	}
-	if (format == 'u')
-		conv2u(va_arg(args, int));
-}
-
-static void	convertor2(va_list args, const char format)
-{
-	unsigned int	n;
-
 	if (format == 'x')
-	{
-		n = va_arg(args, unsigned int);
-		conv2hexp(n, "0123456789abcdef");
-	}
+		len += conv2hexp((unsigned long)ptr, "0123456789abcdef");
 	if (format == 'X')
-	{
-		n = va_arg(args, unsigned int);
-		conv2hexp(n, "0123456789ABCDEF");
-	}
+		len += conv2hexp((unsigned long)ptr, "0123456789ABCDEF");
+	return (len);
 }
 
-void	ft_printf(const char *format, ...)
+static int	convertor(va_list args, const char format)
+{
+	int		len;
+
+	len = 0;
+	if (format == 'd' || format == 'i')
+		len += conv2int(va_arg(args, int));
+	else if (format == 's')
+		len += conv2str(va_arg(args, char *));
+	else if (format == 'c')
+	{
+		ft_putchar(va_arg(args, int));
+		len++;
+	}
+	else if (format == '%')
+	{
+		ft_putchar('%');
+		len++;
+	}
+	else if (format == 'u')
+		len += conv2u(va_arg(args, unsigned int));
+	else if (format == 'x' || format == 'X' || format == 'p')
+		len += convertor2(args, format);
+	return (len);
+}
+
+int	ft_printf(const char *format, ...)
 {
 	va_list	args;
 	int		i;
+	int		len;
 
 	va_start (args, format);
 	i = 0;
+	len = 0;
 	while (format[i])
 	{
 		if (format[i] == '%')
 		{
-			if (format[i + 1] == 'x' || format[i + 1] == 'X')
-				convertor2(args, format[i + 1]);
-			else
-				convertor(args, format[i + 1]);
+			len += convertor(args, format[i + 1]);
 			i = i + 2;
 		}
 		else
 		{
 			write(1, &format[i], 1);
 			i++;
+			len++;
 		}
 	}
 	va_end(args);
+	return (len);
 }

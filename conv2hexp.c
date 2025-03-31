@@ -6,15 +6,20 @@
 /*   By: fio <fio@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 00:58:02 by fio               #+#    #+#             */
-/*   Updated: 2025/03/27 02:44:48 by fio              ###   ########.fr       */
+/*   Updated: 2025/03/31 11:27:39 by fio              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	conv2hexp(unsigned long n, char *base)
+int	conv2hexp(unsigned long n, char *base)
 {
+	int	len;
+
+	len = 0;
 	if (n >= 16)
-		conv2hexp(n / 16, base);
+		len += conv2hexp(n / 16, base);
 	ft_putchar(base[n % 16]);
+	len++;
+	return (len);
 }

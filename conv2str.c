@@ -6,13 +6,13 @@
 /*   By: fio <fio@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 17:53:59 by fio               #+#    #+#             */
-/*   Updated: 2025/03/27 02:46:34 by fio              ###   ########.fr       */
+/*   Updated: 2025/03/31 10:09:01 by fio              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	conv2str(char *str)
+int	conv2str(char *str)
 {
 	int	i;
 
@@ -22,4 +22,5 @@ void	conv2str(char *str)
 		write(1, &str[i], 1);
 		i++;
 	}
+	return (i);
 }

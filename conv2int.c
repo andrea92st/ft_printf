@@ -6,7 +6,7 @@
 /*   By: fio <fio@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 17:17:54 by fio               #+#    #+#             */
-/*   Updated: 2025/03/27 02:45:30 by fio              ###   ########.fr       */
+/*   Updated: 2025/03/31 11:28:33 by fio              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,25 @@ static void	ft_int2char(int i)
 	write (1, &c, 1);
 }
 
-void	conv2int(int n)
+int	conv2int(int n)
 {
+	int	len;
+
+	len = 0;
 	if (n == -2147483648)
 	{
 		write (1, "-2147483648", 11);
-		return ;
+		return (11);
 	}
 	if (n < 0)
 	{
 		write (1, "-", 1);
+		len++;
 		n = -n;
 	}
 	if (n > 9)
-	{
-		conv2int(n / 10);
-		ft_int2char(n % 10);
-	}
-	else
-		ft_int2char(n);
+		len += conv2int(n / 10);
+	ft_int2char(n % 10);
+	len++;
+	return (len);
 }
