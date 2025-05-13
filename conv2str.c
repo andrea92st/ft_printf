@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conv2str.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anfiorit <anfiorit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fio <fio@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 17:53:59 by fio               #+#    #+#             */
-/*   Updated: 2025/05/13 16:27:50 by anfiorit         ###   ########.fr       */
+/*   Updated: 2025/05/13 23:49:05 by fio              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@ int	conv2str(char *str)
 {
 	int	i;
 
-	if(str == NULL)
-		return (0);
+	if (str == NULL)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	i = 0;
 	while (str[i])
 	{

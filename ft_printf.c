@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anfiorit <anfiorit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fio <fio@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:56:33 by fio               #+#    #+#             */
-/*   Updated: 2025/05/13 16:38:56 by anfiorit         ###   ########.fr       */
+/*   Updated: 2025/05/13 23:34:29 by fio              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	convertor2(va_list args, const char format)
 		len += conv2hexp((unsigned long)n, "0123456789abcdef");
 	}
 	else if (format == 'X')
-	{	
+	{
 		n = va_arg(args, unsigned int);
 		len += conv2hexp((unsigned long)n, "0123456789ABCDEF");
 	}
