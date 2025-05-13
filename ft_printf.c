@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fio <fio@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: anfiorit <anfiorit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:56:33 by fio               #+#    #+#             */
-/*   Updated: 2025/03/31 12:03:42 by fio              ###   ########.fr       */
+/*   Updated: 2025/05/13 16:38:56 by anfiorit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,28 @@
 
 static int	convertor2(va_list args, const char format)
 {
-	void	*ptr;
-	int		len;
+	void			*ptr;
+	unsigned int	n;
+	int				len;
 
-	ptr = va_arg (args, void *);
 	len = 0;
 	if (format == 'p')
 	{
+		ptr = va_arg (args, void *);
 		write(1, "0x", 2);
 		len = len + 2;
-		len += conv2hexp((unsigned long)ptr, "0123456789abcdef");
+		len += conv2hexp((size_t)ptr, "0123456789abcdef");
 	}
-	if (format == 'x')
-		len += conv2hexp((unsigned long)ptr, "0123456789abcdef");
-	if (format == 'X')
-		len += conv2hexp((unsigned long)ptr, "0123456789ABCDEF");
+	else if (format == 'x')
+	{
+		n = va_arg(args, unsigned int);
+		len += conv2hexp((unsigned long)n, "0123456789abcdef");
+	}
+	else if (format == 'X')
+	{	
+		n = va_arg(args, unsigned int);
+		len += conv2hexp((unsigned long)n, "0123456789ABCDEF");
+	}
 	return (len);
 }
 
