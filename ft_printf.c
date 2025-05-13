@@ -6,26 +6,38 @@
 /*   By: fio <fio@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:56:33 by fio               #+#    #+#             */
-/*   Updated: 2025/05/13 23:34:29 by fio              ###   ########.fr       */
+/*   Updated: 2025/05/14 00:07:49 by fio              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	convertor2(va_list args, const char format)
+static int	convertor3(va_list args)
 {
 	void			*ptr;
+	int				len;
+
+	len = 0;
+	ptr = va_arg (args, void *);
+	if (ptr == NULL)
+	{
+		write (1, "(nil)", 5);
+		return (5);
+	}
+	write(1, "0x", 2);
+	len = len + 2;
+	len += conv2hexp((size_t)ptr, "0123456789abcdef");
+	return (len);
+}
+
+static int	convertor2(va_list args, const char format)
+{
 	unsigned int	n;
 	int				len;
 
 	len = 0;
 	if (format == 'p')
-	{
-		ptr = va_arg (args, void *);
-		write(1, "0x", 2);
-		len = len + 2;
-		len += conv2hexp((size_t)ptr, "0123456789abcdef");
-	}
+		len += convertor3(args);
 	else if (format == 'x')
 	{
 		n = va_arg(args, unsigned int);
